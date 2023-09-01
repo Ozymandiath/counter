@@ -1,6 +1,8 @@
-html, body {
+html,
+body {
     height: 100%;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -18,10 +20,15 @@ body {
     flex-direction: column;
     display: flex;
     align-items: center;
-    gap: 50px 0;
+    gap: 100px 0;
 }
 
 .clock {
+    display: flex;
+    font-size: 70px;
+}
+
+.circle {
     display: flex;
 }
 Sanya s dirkoy v zhope
@@ -29,9 +36,21 @@ Sanya s dirkoy v zhope
     width: 200px;
     height: 200px;
     border: 0px;
-    background-color: crimson;
+    background-color: rgb(228, 4, 49);
     color: #fff;
     padding: 40px;
     border-radius: 50%;
     font-size: 30px;
+    cursor: pointer;
+}
+
+.but-s:hover {
+    border: 1px solid rgba(0, 0, 0, 0.425);
+
+}
+
+.but-s:active {
+    border: 0;
+    background-color: rgb(153, 0, 31);
+    box-shadow: 0px 0px 10px 0px rgba(48, 23, 23, 0.932);
 }
