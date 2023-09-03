@@ -1,10 +1,10 @@
-name: Get latest blog posts
+name: Push latest commit
 on:
     push:
         branches: ["dev"]
 
 jobs:
-  update_profile_data:
+  update_branch_master:
     runs-on: ubuntu-latest
     steps:
       - name: Get latest counter
@@ -17,7 +17,5 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add .
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git commit -m "Automated: обновление репозитория"
-            git push origin master
-          fi
+          git commit -m "Automated: обновление репозитория"
+          git push origin master
