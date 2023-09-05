@@ -1,24 +1,40 @@
-class Timer {
 
+class Timer {
+    
     constructor() {
         this.hours = 0
         this.minutes = 0
         this.seconds = 0
-        // this.value = 0
+        this.btnStatus = false
     }
+    
+    start2(){
+        document.getElementById('btn_SS').addEventListener('click', () => {this.updateButton()})
+    }
+
+    updateButton() { 
+        if (this.btnStatus === false) {
+            this.btnStatus = true
+            this.start()
+        }
+        else {
+            this.btnStatus = false
+            this.stop()
+        }
+     }
 
     start() {
         let idInterval = setInterval(() => {
             this.visual()
             this.improve()
         }, 1000);
-    
+
 
         // this.idInterval = setInterval(()=>{
         //     console.log('sanya')
         // },1000)
     }
-    stop(){
+    stop() {
         clearInterval(this.idInterval)
     }
 
@@ -28,11 +44,11 @@ class Timer {
 
     improve() {
         this.seconds += 1
-        if (this.seconds === 3) {
+        if (this.seconds === 4) {
             this.seconds = 0
             this.minutes += 1
         }
-        if (this.minutes === 2) {
+        if (this.minutes === 4) {
             this.minutes = 0
             this.hours += 1
         }
@@ -43,9 +59,14 @@ class Timer {
 
 
 }
-
 let secundomer = new Timer()
+// function lert (){
+//     secundomer.updateButton()
+// }
 
-secundomer.start()
+
+secundomer.start2()
 
 
+
+////Решить проблему с обнулением секундомера
