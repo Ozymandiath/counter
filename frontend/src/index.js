@@ -1,41 +1,42 @@
 
 class Timer {
-    
+
     constructor() {
         this.hours = 0
         this.minutes = 0
         this.seconds = 0
         this.btnStatus = false
     }
-    
-    start2(){
-        document.getElementById('btn_SS').addEventListener('click', () => {this.updateButton()})
+
+    btnStart() {
+        document.getElementById('btn_SS').addEventListener('click', () => { this.updateButton() })
     }
 
-    updateButton() { 
-        if (this.btnStatus === false) {
-            this.btnStatus = true
+    updateButton() {
+        if (!this.btnStatus) {
             this.start()
+            this.btnStatus = true
         }
         else {
-            this.btnStatus = false
             this.stop()
+            this.btnStatus = false
         }
-     }
+    }
 
     start() {
-        let idInterval = setInterval(() => {
+        this.intervalID = setInterval(() => {
             this.visual()
             this.improve()
         }, 1000);
 
-
-        // this.idInterval = setInterval(()=>{
-        //     console.log('sanya')
-        // },1000)
     }
     stop() {
-        clearInterval(this.idInterval)
+        clearInterval(this.intervalID)
+        this.hours = 0
+        this.minutes = 0
+        this.seconds = 0
+        this.visual()
+        
     }
 
     visual() {
@@ -60,13 +61,6 @@ class Timer {
 
 }
 let secundomer = new Timer()
-// function lert (){
-//     secundomer.updateButton()
-// }
+secundomer.btnStart()
 
-
-secundomer.start2()
-
-
-
-////Решить проблему с обнулением секундомера
+///////Создать основной таймер
