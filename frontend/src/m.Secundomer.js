@@ -4,7 +4,8 @@ export class Secundomer {
         this.time = {
             hours: 0,
             minutes: 0,
-            seconds: 0
+            seconds: 0,
+            miliseconds: 0
         }
         this.mainTime = structuredClone(this.time);
     }
@@ -15,12 +16,13 @@ export class Secundomer {
         this.intervalID = setInterval(() => {
             this.visual()
             this.improve()
-        }, 1000);
+        }, 10);
 
     }
     stop() {
         clearInterval(this.intervalID)
         this.mainTime = structuredClone(this.time)
+        console.log(this.mainTime)
         for (const key in this.time) {
             if (this.time.hasOwnProperty(key)) this.time[key] = 0;
         }
@@ -28,11 +30,15 @@ export class Secundomer {
     }
 
     visual() {
-        document.getElementById("clock1").textContent = `${this.time.hours}:${this.time.minutes}:${this.time.seconds}`
+        document.getElementById('clock1').textContent = 
+        `${(this.time.hours < 10)?"0":""}${this.time.hours}:${(this.time.minutes < 10)?"0":""}${this.time.minutes}:${(this.time.seconds < 10)?"0":""}${this.time.seconds}:${(this.time.miliseconds < 10)?"0":""}${this.time.miliseconds}` 
     }
-
     improve() {
-        this.time.seconds += 1
+        this.time.miliseconds += 1
+        if (this.time.miliseconds === 100) {
+            this.time.miliseconds = 0
+            this.time.seconds += 1
+        }
         if (this.time.seconds === 60) {
             this.time.seconds = 0
             this.time.minutes += 1
