@@ -1,25 +1,12 @@
 export class Secundomer {
 
     constructor() {
-        this.hours = 0
-        this.minutes = 0
-        this.seconds = 0
-        this.btnStatus = false
-    }
-
-    btnStart() {
-        document.getElementById('btn_SS').addEventListener('click', () => { this.updateButton() })
-    }
-
-    updateButton() {
-        if (!this.btnStatus) {
-            this.start()
-            this.btnStatus = true
+        this.time = {
+            hours: 0,
+            minutes: 0,
+            seconds: 0
         }
-        else {
-            this.stop()
-            this.btnStatus = false
-        }
+        this.mainTime = structuredClone(this.time);
     }
 
     start() {
@@ -33,30 +20,28 @@ export class Secundomer {
     }
     stop() {
         clearInterval(this.intervalID)
-        this.hours = 0
-        this.minutes = 0
-        this.seconds = 0
+        this.mainTime = structuredClone(this.time)
+        for (const key in this.time) {
+            if (this.time.hasOwnProperty(key)) this.time[key] = 0;
+        }
         this.visual()
-
     }
 
     visual() {
-        document.getElementById("clock1").innerHTML = `${this.hours}:${this.minutes}:${this.seconds}`
+        document.getElementById("clock1").textContent = `${this.time.hours}:${this.time.minutes}:${this.time.seconds}`
     }
 
     improve() {
-        this.seconds += 1
-        if (this.seconds === 4) {
-            this.seconds = 0
-            this.minutes += 1
+        this.time.seconds += 1
+        if (this.time.seconds === 60) {
+            this.time.seconds = 0
+            this.time.minutes += 1
         }
-        if (this.minutes === 4) {
-            this.minutes = 0
-            this.hours += 1
+        if (this.time.minutes === 60) {
+            this.time.minutes = 0
+            this.time.hours += 1
         }
-        if (this.hours === 2) this.hours = 0
-
-        return this.seconds
+        if (this.time.hours === 24) this.time.hours = 0
     }
 
 
