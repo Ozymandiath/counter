@@ -1,5 +1,4 @@
-
-class Timer {
+export class Secundomer {
 
     constructor() {
         this.hours = 0
@@ -24,6 +23,8 @@ class Timer {
     }
 
     start() {
+        this.visual()
+        this.improve()
         this.intervalID = setInterval(() => {
             this.visual()
             this.improve()
@@ -36,7 +37,7 @@ class Timer {
         this.minutes = 0
         this.seconds = 0
         this.visual()
-        
+
     }
 
     visual() {
@@ -60,7 +61,5 @@ class Timer {
 
 
 }
-let secundomer = new Timer()
-secundomer.btnStart()
 
 ///////Создать основной таймер
